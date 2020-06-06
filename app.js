@@ -20,6 +20,12 @@ function addTodo(event, todo = null) {
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todo");
 
+  // Completed Button
+  const completedButton = document.createElement("button");
+  // completedButton.innerHTML = '<i class = "fas fa-check"></i>';
+  completedButton.classList.add("complete-btn");
+  todoDiv.appendChild(completedButton);
+
   // create LI
   const newTodo = document.createElement("li");
   newTodo.innerHTML = todo ? todo : todoInput.value;
@@ -28,12 +34,6 @@ function addTodo(event, todo = null) {
 
   // add to localStrorage
   if (!todo) saveLocalTodos(todoInput.value);
-
-  // Completed Button
-  const completedButton = document.createElement("button");
-  completedButton.innerHTML = '<i class = "fas fa-check"></i>';
-  completedButton.classList.add("complete-btn");
-  todoDiv.appendChild(completedButton);
 
   //Delete Button
   const trashButton = document.createElement("button");

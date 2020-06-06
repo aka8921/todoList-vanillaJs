@@ -18,21 +18,23 @@
   </head>
   <body>
     <header>
-      <h1>Hello <i class="fas fa-cat"></i></h1>
+      <h1>Your Todos <i class="fas fa-cat"></i></h1>
     </header>
-    <form>
-      <input type="text" class="todo-input" />
-      <button class="todo-button" type="submit">
-        <i class="fas fa-plus-square"></i>
-      </button>
-      <div class="select">
-        <select name="todos" class="filter-todo">
-          <option value="all">All</option>
-          <option value="completed">Completed</option>
-          <option value="uncompleted">Uncompleted</option>
-        </select>
-      </div>
-    </form>
+    <div class="form-container">
+      <form>
+        <input type="text" class="todo-input" />
+        <button class="todo-button" type="submit">
+          Add <i class="fas fa-plus-square"></i>
+        </button>
+        <!-- <div class="select">
+          <select name="todos" class="filter-todo">
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="uncompleted">Uncompleted</option>
+          </select>
+        </div> -->
+      </form>
+    </div>
     <div class="todo-container">
       <ul class="todo-list"></ul>
     </div>
