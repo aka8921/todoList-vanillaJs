@@ -1,5 +1,5 @@
 # todoList-vanillaJs
-Vanilla Js implementation of a siple todo List app
+Vanilla Js implementation of a simple todo List app
 did this to get a hang of implementing something in vanilla JS.
 
 # Running the project
