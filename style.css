@@ -18,7 +18,7 @@ header {
 
 .form-container {
   background-color: rgb(59, 59, 59);
-  padding: 1em 10em;
+  padding: 1em;
   position: fixed;
   bottom: 0;
   width: 100vw;
@@ -30,6 +30,18 @@ form {
   align-items: center;
 }
 
+@media screen and (max-width: 600px) {
+  form {
+    flex-direction: column;
+  }
+  .todo-button {
+    width: 100%;
+  }
+  .todo-input {
+    width: 100%;
+  }
+}
+
 header {
   min-height: 20vh;
   display: flex;
@@ -38,7 +50,7 @@ header {
 }
 
 .todo-input {
-  padding: 1rem;
+  padding: 1rem 0;
   border: none;
   border-radius: 0.1em;
   background-color: rgb(71, 71, 71);
@@ -46,9 +58,13 @@ header {
   flex-grow: 1;
 }
 
+.todo-input:focus {
+  border: none;
+}
+
 .todo-button {
   background-color: rgb(68, 0, 255);
-  margin: 0 1em;
+  margin: 1em;
   color: #d88771;
   cursor: pointer;
   transition: all 0.1s ease;

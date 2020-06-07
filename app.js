@@ -2,12 +2,12 @@
 const todoInput = document.querySelector(".todo-input");
 const todoList = document.querySelector(".todo-list");
 const todoButton = document.querySelector(".todo-button");
-const filterOption = document.querySelector(".filter-todo");
+// const filterOption = document.querySelector(".filter-todo");
 
 //Event Listners
 todoButton.addEventListener("click", addTodo);
 todoList.addEventListener("click", deleteCheck);
-filterOption.addEventListener("click", filterTodo);
+// filterOption.addEventListener("click", filterTodo);
 document.addEventListener("DOMContentLoaded", getTodos);
 
 //Functions
