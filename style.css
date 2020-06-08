@@ -97,6 +97,7 @@ form button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 90vw;
   border-radius: 0.3em;
   transition: all 0.1s ease;
 }
@@ -106,7 +107,10 @@ form button:hover {
 }
 
 .todo li {
-  flex: 1;
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .trash-btn {
