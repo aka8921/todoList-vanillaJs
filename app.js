@@ -1,6 +1,7 @@
 //selectors
 const todoInput = document.querySelector(".todo-input");
 const todoList = document.querySelector(".todo-list");
+const completedList = document.querySelector(".completed-list");
 const todoButton = document.querySelector(".todo-button");
 
 //Event Listners
@@ -11,7 +12,9 @@ document.addEventListener("DOMContentLoaded", getTodos);
 //Functions
 
 // gets the todos from localstorage and loads it into the todos
+// This gets called on DOMContentLoaded
 function getTodos() {
+  // todos
   let todos = localStorage.getItem("todos");
   if (todos === null || todos.length === 0) {
     todos = [];
@@ -20,6 +23,18 @@ function getTodos() {
     todos = JSON.parse(localStorage.getItem("todos"));
     todos.forEach((todo) => {
       loadTodo(todo);
+    });
+  }
+
+  // completed todos
+  let completed = localStorage.getItem("completed");
+  if (completed === null || completed.length === 0) {
+    completed = [];
+    localStorage.setItem("completed", JSON.stringify(completed));
+  } else {
+    todos = JSON.parse(localStorage.getItem("completed"));
+    todos.forEach((todo) => {
+      loadCompletedTodos(todo);
     });
   }
 }
@@ -62,6 +77,11 @@ function loadTodo(task) {
   todoList.appendChild(todoDiv);
 }
 
+function loadCompletedTodos(task) {
+  const todoDiv = createNewTodo(task);
+  completedList.appendChild(todoDiv);
+}
+
 function todoClicked(e) {
   const item = e.target;
   const todo = item.parentElement;
@@ -69,7 +89,7 @@ function todoClicked(e) {
 
   if (item.classList[0] === "trash-btn") deleteTodo(todo, task);
 
-  if (item.classList[0] === "complete-btn") completeTodo(task);
+  if (item.classList[0] === "complete-btn") completeTodo(todo, task);
 }
 
 function deleteTodo(todo, task) {
@@ -77,8 +97,8 @@ function deleteTodo(todo, task) {
   todo.remove();
 }
 
-function completeTodo(task) {
-  todo.classList.toggle("completed");
+function completeTodo(todo, task) {
+  console.log(`completing ${task}`);
 }
 
 function saveTodo(task) {
