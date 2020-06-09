@@ -7,6 +7,7 @@ const todoButton = document.querySelector(".todo-button");
 //Event Listners
 todoButton.addEventListener("click", addTodo);
 todoList.addEventListener("click", todoClicked);
+completedList.addEventListener("click", todoClicked);
 document.addEventListener("DOMContentLoaded", getTodos);
 
 //Functions
@@ -89,20 +90,31 @@ function loadCompletedTodos(task) {
 function todoClicked(e) {
   const item = e.target;
   const todo = item.parentElement;
+  const section = todo.parentElement.parentElement.classList[0];
   const task = todo.querySelector(".todo-item").innerHTML;
 
-  if (item.classList[0] === "trash-btn") deleteTodo(todo, task);
+  if (item.classList[0] === "trash-btn") deleteTodo(todo, task, section);
 
-  if (item.classList[0] === "complete-btn") completeTodo(todo, task);
+  if (item.classList[0] === "complete-btn") completeTodo(todo, task, section);
 }
 
-function deleteTodo(todo, task) {
-  deleteTodoFromLocal(task);
+function deleteTodo(todo, task, section) {
+  deleteTodoFromLocal(task, section);
   todo.remove();
 }
 
-function completeTodo(todo, task) {
+function completeTodo(todo, task, section) {
   console.log(`completing ${task}`);
+  if (section === "todo-container") checkTodo(todo, task);
+  else unCheckTodo(todo, task);
+}
+
+function checkTodo(todo, task) {
+  console.log("checking");
+}
+
+function unCheckTodo(todo, task) {
+  console.log("unChecking");
 }
 
 function saveTodo(task) {
@@ -116,15 +128,17 @@ function saveTodo(task) {
   localStorage.setItem("todos", JSON.stringify(todos));
 }
 
-function deleteTodoFromLocal(todo) {
+function deleteTodoFromLocal(todo, section) {
   console.log(`Deleting ${todo}`);
 
-  let todos = localStorage.getItem("todos");
+  const name = section === "todo-container" ? "todos" : "completed";
+
+  let todos = localStorage.getItem(name);
   if (todos === null) {
     todos = [];
   } else {
-    todos = JSON.parse(localStorage.getItem("todos"));
+    todos = JSON.parse(localStorage.getItem(name));
   }
   todos.splice(todos.indexOf(todo), 1);
-  localStorage.setItem("todos", JSON.stringify(todos));
+  localStorage.setItem(name, JSON.stringify(todos));
 }

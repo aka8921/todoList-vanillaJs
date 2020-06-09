@@ -78,7 +78,8 @@ form button:hover {
   background-color: rgb(60, 2, 219);
 }
 
-.todo-container {
+.todo-container,
+.completed-container {
   display: flex;
   justify-content: center;
   align-items: center;
