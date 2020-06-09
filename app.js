@@ -40,7 +40,7 @@ function getTodos() {
 }
 
 // creates a new todoDiv
-function createNewTodo(task) {
+function createNewTodo(task, completed = false) {
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todo");
 
@@ -56,6 +56,9 @@ function createNewTodo(task) {
   const trashButton = document.createElement("button");
   trashButton.innerHTML = '<i class = "fas fa-trash"></i>';
   trashButton.classList.add("trash-btn");
+
+  if (completed) todoDiv.classList.add("completed");
+
   todoDiv.appendChild(trashButton);
 
   return todoDiv;
@@ -78,7 +81,8 @@ function loadTodo(task) {
 }
 
 function loadCompletedTodos(task) {
-  const todoDiv = createNewTodo(task);
+  const completed = true;
+  const todoDiv = createNewTodo(task, completed);
   completedList.appendChild(todoDiv);
 }
 
