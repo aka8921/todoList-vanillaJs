@@ -58,7 +58,7 @@ function createNewTodo(task, completed = false) {
   trashButton.innerHTML = '<i class = "fas fa-trash"></i>';
   trashButton.classList.add("trash-btn");
 
-  if (completed) todoDiv.classList.add("completed");
+  if (completed) todoDiv.classList.toggle("completed");
 
   todoDiv.appendChild(trashButton);
 
@@ -70,7 +70,7 @@ function addTodo(event) {
   const task = todoInput.value;
   const todoDiv = createNewTodo(task);
 
-  saveTodo(todoInput.value);
+  saveTodo(todoInput.value, "todos");
   todoInput.value = "";
 
   todoList.appendChild(todoDiv);
@@ -99,46 +99,50 @@ function todoClicked(e) {
 }
 
 function deleteTodo(todo, task, section) {
-  deleteTodoFromLocal(task, section);
+  const name = section === "todo-container" ? "todos" : "completed";
+  deleteTodoFromLocal(task, name);
   todo.remove();
 }
 
 function completeTodo(todo, task, section) {
-  console.log(`completing ${task}`);
   if (section === "todo-container") checkTodo(todo, task);
   else unCheckTodo(todo, task);
 }
 
 function checkTodo(todo, task) {
-  console.log("checking");
+  todo.classList.toggle("completed");
+  completedList.appendChild(todo);
+  deleteTodoFromLocal(task, "todos");
+  saveTodo(task, "completed");
 }
 
 function unCheckTodo(todo, task) {
-  console.log("unChecking");
+  todo.classList.toggle("completed");
+  todoList.appendChild(todo);
+  deleteTodoFromLocal(task, "completed");
+  saveTodo(task, "todos");
 }
 
-function saveTodo(task) {
-  let todos = JSON.parse(localStorage.getItem("todos"));
+function saveTodo(task, name) {
+  let todos = JSON.parse(localStorage.getItem(name));
 
   if (!todos) {
     todos = [];
   }
 
   todos.push(task);
-  localStorage.setItem("todos", JSON.stringify(todos));
+  localStorage.setItem(name, JSON.stringify(todos));
 }
 
-function deleteTodoFromLocal(todo, section) {
-  console.log(`Deleting ${todo}`);
-
-  const name = section === "todo-container" ? "todos" : "completed";
-
+function deleteTodoFromLocal(todo, name) {
   let todos = localStorage.getItem(name);
+
   if (todos === null) {
     todos = [];
   } else {
     todos = JSON.parse(localStorage.getItem(name));
   }
+
   todos.splice(todos.indexOf(todo), 1);
   localStorage.setItem(name, JSON.stringify(todos));
 }
