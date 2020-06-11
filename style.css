@@ -78,13 +78,15 @@ form button:hover {
   background-color: rgb(60, 2, 219);
 }
 
-.todo-container {
+.todo-container,
+.completed-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.todo-list {
+.todo-list,
+.completed-list {
   min-width: 30%;
   list-style: none;
 }
