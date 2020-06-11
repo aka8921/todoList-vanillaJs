@@ -1,8 +1,8 @@
 //selectors
-const todoInput = document.querySelector(".todo-input");
+const todoInput = document.querySelector("#input");
+const todoButton = document.querySelector("#button");
 const todoList = document.querySelector(".todo-list");
 const completedList = document.querySelector(".completed-list");
-const todoButton = document.querySelector(".todo-button");
 
 //Event Listners
 todoButton.addEventListener("click", addTodo);
