@@ -19,27 +19,22 @@ header {
 .form-container {
   background-color: rgb(59, 59, 59);
   padding: 1em;
+}
+
+.fixed {
   position: fixed;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 form {
   display: flex;
   justify-content: start;
   align-items: center;
-}
-
-@media screen and (max-width: 600px) {
-  form {
-    flex-direction: column;
-  }
-  .todo-button {
-    width: 100%;
-  }
-  .todo-input {
-    width: 100%;
-  }
 }
 
 header {
@@ -99,9 +94,13 @@ form button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 90vw;
+  width: 80vw;
   border-radius: 0.3em;
   transition: all 0.1s ease;
+}
+
+.todo:hover {
+  background-color: rgb(88, 88, 88);
 }
 
 .todo-item {
@@ -181,4 +180,19 @@ select {
   right: 0;
   padding: 1rem;
   pointer-events: none;
+}
+
+@media screen and (max-width: 600px) {
+  form {
+    flex-direction: column;
+  }
+  .todo-button {
+    width: 100%;
+  }
+  .todo-input {
+    width: 100%;
+  }
+  .todo {
+    width: 90vw;
+  }
 }
